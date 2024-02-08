@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div>
+            <h1 class="titulos"><a href="/">Blog de Brewing</a></h1>  
+        </div>
+        <div class="bar">
+            <ul class="bar_items">
+                <li><a href="login"> Login</a></li>
+                <li><a href="sobre_nosotros">Sobre nosotros</a></li>
+                <li><a href="create_post"> Nuevo post</a></li>
+              
+                    
+            </ul>
+        </div>
+        
+    </header>
+    <main>
+        {% block main%}
+        {% endblock %}
+    </main>
+    <footer>
+        {% block footer %}
+        {% endblock %}
+    </footer>
+</body>
+</html>
