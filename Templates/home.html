@@ -10,15 +10,15 @@
 
 
 {% block main %}
-        <h1>Posteos</h1>
+        <h1 class="subtitulo">Nuevos Posts</h1>
          {% for posts in posts %}
+         <div class="posts">
+            <h3>{{posts.titulo}}</h3>
             <h3> Autor del post: {{posts.autor}}</h3>
             <p>{{posts.posteo}}</p>
+        </div>
          {% endfor %}
 
-    <footer>
-       <p> Creador Nicolas Barbato</p>
-       <p>  Contacto (Mandar mail)</p>
-    </footer>
+    
 {% endblock %}
 </html>
