@@ -11,12 +11,17 @@
 
 {% block main %}
         <h1 class="subtitulo">Nuevos Posts</h1>
+        
+        <form action="{{ url_for('home') }}">
+            <input type="search" id="search" name="search"><br>
+            <button type="submit">Buscar</button>
+        </form>
          {% for posts in posts %}
          <div class="posts">
             <h3>{{posts.titulo}}</h3>
             <h3> Autor del post: {{posts.autor}}</h3>
             <p>{{posts.posteo}}</p>
-        </div>
+         </div>
          {% endfor %}
 
     

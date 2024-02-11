@@ -21,7 +21,16 @@ users = [
 
 @app.route('/')
 def home():
-    return render_template("/home.html", posts=posts)
+    busqueda = request.args.get('search')
+    if busqueda:
+         list_post = []
+         for post in posts:
+             if busqueda.lower() in post['titulo'].lower():
+                 list_post.append(post)
+         return render_template("home.html", posts=list_post)
+    else:
+         return render_template("home.html", posts=posts)
+    
 
 
 @app.route("/sobre_nosotros")
@@ -50,13 +59,14 @@ def create_post():
 def post():
     return render_template("post.html")
 
-@app.route("/post/<id>")
-def busqueda(id):
-    list_post = []
-    for post in posts:
-        if posts[id] == int(id): 
-            list_post.append(post)
-    return render_template("/home.html", posts=list_post)
+# @app.route("/post/<int: id>")
+# def busqueda(id):
+#     list_post = []
+#     for post in posts:
+#         if posts["id"] == id: 
+#             list_post.append(post)
+
+#     return render_template("/home.html", posts=list_post)
 
 
 @app.route('/register', methods=["GET", "POST"])

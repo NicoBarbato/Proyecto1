@@ -16,17 +16,16 @@
 .foot { 
     background-color:rgb(243, 255, 135);
     border-top: solid 2px;
-
+    
 }
 .posts {
-    box-shadow: 10px 10px 5px 11px rgba(243, 247, 6, 0.75);
-    -webkit-box-shadow: 10px 10px 5px 11px rgba(243, 247, 6, 0.75);
-    -moz-box-shadow: 10px 10px 5px 11px rgba(243,247,6,0.75);
-    margin: 40px 20px 20px 20px;
-    padding: 10px;
+    -webkit-box-shadow: inset 0px 0px 76px 4px rgba(255,213,0,1);
+    -moz-box-shadow: inset 0px 0px 76px 4px rgba(255,213,0,1);
+    box-shadow: inset 0px 0px 76px 4px rgba(255,213,0,1);
     margin-bottom: 50px;
 }
 
 .subtitulo { text-align: center;
 
 }
+
