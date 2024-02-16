@@ -18,9 +18,10 @@
         </form>
          {% for posts in posts %}
          <div class="posts">
+
             <h3>{{posts.titulo}}</h3>
-            <p>{{posts.posteo}}</p>
-            <h3 style="font-size: small;"> Autor del post: {{posts.autor}}</h3>
+            <h3 style="font-size: small;"> Autor: {{posts.autor}}</h3>
+            <a href="/post/{{posts.id}}" style="font-size: small;">Leer mas..</a>
          </div>
          {% endfor %}
 

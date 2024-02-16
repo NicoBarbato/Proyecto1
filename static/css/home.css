@@ -30,6 +30,8 @@
     -moz-box-shadow: inset 0px 0px 76px 4px rgba(248, 248, 248);
     box-shadow: inset 0px 0px 76px 4px rgba(248, 248, 248);
     margin-bottom: 50px;
+    display: flexbox;
+
 }
 
 .subtitulo { text-align: center;
