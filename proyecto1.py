@@ -9,33 +9,28 @@ def get_db_conection():
     cursor = conn.cursor()
     return conn, cursor
 
-posts = [
-    {"id":1, "autor":"autor 1", "titulo":"Mejores Cervezas","posteo":"Las mejores cervezas se elavoran en..."}, 
-    {"id":2, "autor":"autor 2", "titulo":"Mejores Variedades","posteo":"La variedad de cervezas mas consumida es.."},
-    {"id":3, "autor":"autor 3", "titulo":"Mejores Marcas","posteo":"ashfalknfaksfnakjdnasda.."},
-    {"id":4, "autor":"autor 4", "titulo":"Tipos de copas","posteo":"kjdhfkjasnd,and,mnsd.."},
-    {"id":5, "autor":"autor 5", "titulo":"Paises mas consumidores","posteo":"sdgsdgasdfsdfsdfgsdg.."},
+#posts = [
+#    {"id":1, "autor":"autor 1", "titulo":"Mejores Cervezas","posteo":"Las mejores cervezas se elavoran en..."}, 
+#    {"id":2, "autor":"autor 2", "titulo":"Mejores Variedades","posteo":"La variedad de cervezas mas consumida es.."},
+#    {"id":3, "autor":"autor 3", "titulo":"Mejores Marcas","posteo":"ashfalknfaksfnakjdnasda.."},
+#    {"id":4, "autor":"autor 4", "titulo":"Tipos de copas","posteo":"kjdhfkjasnd,and,mnsd.."},
+#    {"id":5, "autor":"autor 5", "titulo":"Paises mas consumidores","posteo":"sdgsdgasdfsdfsdfgsdg.."},
+#
+#    ]
+#users = [
+#    {"id":1, "username": "nbarbato", "password":"12345"},
+#    {"id":1, "username": "nicob", "password":"12345"}
+#    ]
 
-    ]
-users = [
-    {"id":1, "username": "nbarbato", "password":"12345"},
-    {"id":1, "username": "nicob", "password":"12345"}
-    ]
-
-#posts = []
+posts = []
 
 @app.route('/')
 def home():
-    busqueda = request.args.get('search')
-    if busqueda:
-         list_post = []
-         for post in posts:
-             if busqueda.lower() in post['titulo'].lower():
-                 list_post.append(post)
-         return render_template("home.html", posts=list_post)
-    else:
-         return render_template("home.html", posts=posts)
-    
+    conn, cursor = get_db_conection()
+    cursor.execute("SELECT * FROM posts")
+    post = cursor.fetchall()
+    return render_template("home.html", posts=post)
+
 
 
 @app.route("/sobre_nosotros")
@@ -65,8 +60,8 @@ def create_post():
             titulo = request.form["titulo"]
             posteo = request.form["posteo"]
             if autor and titulo and posteo:
-                    conn = get_db_conection()
-                    conn.execute("INSERT INTO posts (autor, titulo, posteo) VALUES (?,?,?)", (autor, titulo, posteo))
+                    conn, cursor = get_db_conection()
+                    cursor.execute("INSERT INTO posts (autor, titulo, posteo) VALUES (?,?,?)", (autor, titulo, posteo))
                     conn.commit()
                     conn.close()
             return redirect('/')
@@ -77,14 +72,12 @@ def create_post():
 def post():
     return render_template("post.html")
 
-@app.route("/post/<int:id>")
+@app.route("/post/<id>")
 def busqueda(id):
-     #list_post = []
-     for post in posts:
-         if post["id"] == id: 
-             #list_post.append(post)
-
-          return render_template("post.html", post=post)
+    conn, cursor = get_db_conection()
+    cursor.execute("SELECT * FROM posts WHERE post.id == ?", id)
+    post = cursor.fetchone()
+    return render_template("post.html", post=post)
 
 
 @app.route('/register', methods=["GET", "POST"])

@@ -19,9 +19,9 @@
          {% for posts in posts %}
          <div class="posts">
 
-            <h3>{{posts.titulo}}</h3>
-            <h3 style="font-size: small;"> Autor: {{posts.autor}}</h3>
-            <a href="/post/{{posts.id}}" style="font-size: small;">Leer mas..</a>
+            <h3>{{posts[2]}}</h3>
+            <h3 style="font-size: small;"> Autor: {{posts[1]}}</h3>
+            <a href="/post/{{posts[0]}}" style="font-size: small;">Leer mas..</a>
          </div>
          {% endfor %}
 

@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
-    <title>Posteo</title>
+    <title>Posteos</title>
 {% endblock %}
 
 {% block main %}
     <div>
-        <h3>Titulo: {{ post.titulo }}</h3>
-        <p>Autor: {{ post.autor }}</p>
+        <h3>Titulo: {{ post[2] }}</h3>
+        <p>Autor: {{ post[1] }}</p>
     </div>
     <div>
-        <p>{{ post.posteo }}</p>
+        <p>{{ post.[3] }}</p>
     </div>
   
 {% endblock %}
