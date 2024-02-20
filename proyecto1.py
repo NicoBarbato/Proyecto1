@@ -42,9 +42,18 @@ def login():
      if request.method == "GET":
         return render_template("login.html")
      elif request.method == "POST":
-         for user in users:
-            if user['username'] == request.form["username"] and user['password'] == request.form["password"]:
-             return redirect('/perfil')
+         username = request.form["username"]
+         password = request.form["password"]
+         conn,cursor = get_db_conection()
+         cursor.execute("SELECT * FROM users WHERE users.username == ?", (username,))
+         user_exist = cursor.fetchone()
+         conn.close()
+         if user_exist and user_exist[2] == password :
+             return render_template("perfil.html")
+         else:
+             return render_template("login.html", error = "Usuario o contraseña incorrectos")
+         
+         
 
 @app.route("/perfil")
 def perfil():
@@ -75,7 +84,7 @@ def post():
 @app.route("/post/<id>")
 def busqueda(id):
     conn, cursor = get_db_conection()
-    cursor.execute("SELECT * FROM posts WHERE post.id == ?", id)
+    cursor.execute("SELECT * FROM posts WHERE posts.id == ?", id)
     post = cursor.fetchone()
     return render_template("post.html", post=post)
 
@@ -87,11 +96,22 @@ def register():
     elif request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+
+        if not password or not username:
+            return render_template("register.html", error="USERNAME y PASSWORD son obligatorios")
+        
+        conn, cursor = get_db_conection()
+        cursor.execute("SELECT * FROM users WHERE users.username == ?", (username,))
+        user_exist = cursor.fetchone()
+        if user_exist:
+            return render_template("register.html", error="El username ya esta en uso")
+
         conn, cursor = get_db_conection()
         cursor.execute("INSERT INTO users (username, password) VALUES (?,?)", (username, password))
         conn.commit()
         conn.close()
-        return redirect('/login')
+        return redirect('/perfil')
+    
        #     user_exist = list(filter(lambda user: user['username'] == request.form["username"], users))
         #    if user_exist:
          #       return render_template("register.html", error="El username ya existe")
@@ -99,6 +119,11 @@ def register():
            # new_user = {"id": new_id, "username": request.form["username"], "password":  request.form["password"]}
             #users.append(new_user)
             #return redirect('/perfil')
+
+
+
+
+
 
 
 

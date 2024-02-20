@@ -6,12 +6,12 @@
     -webkit-text-stroke: 2px;
     -webkit-text-stroke-color: black;
      }
-.bar {
+.barra {
         border-bottom: solid 1px;
         margin-bottom: 50px;
     }
     
-.bar_items {
+.barra_inicio {
         display: flex;
         justify-content: space-around;
         list-style: none;
@@ -43,3 +43,4 @@ body{ background-image: url(../css/cerveza.jpg);
       background-size: cover;
 
 }
+
