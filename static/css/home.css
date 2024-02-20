@@ -7,8 +7,9 @@
     -webkit-text-stroke-color: black;
      }
 .barra {
-        border-bottom: solid 1px;
+        border-bottom: solid 2px;
         margin-bottom: 50px;
+        border-top: solid 2px;
     }
     
 .barra_inicio {

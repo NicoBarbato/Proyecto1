@@ -12,6 +12,7 @@
 
 {% block main %}
     <h1 class="subtitulo">Login</h1>
+    <div style="text-align: center;">
     <form action="/login" method="post">
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
@@ -19,8 +20,10 @@
         <input type="password" id="password" name="password"><br>
         <input type="submit" value="Enviar">
     </form>
+    
     <p style="color: red;">{{ error }}</p>
     <p>No tenes cuenta? Registrate <a href="{{ url_for('register') }}">aqui</a></p>
+    </div>
 {% endblock %}
 
 </html> 

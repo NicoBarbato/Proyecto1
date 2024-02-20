@@ -9,12 +9,15 @@
 
 {% block main %}
     <h1 class="subtitulo">Registro de nuevo usuario:</h1>
+    <div style="text-align: center;">
     <form action="/register" method="post">
         <label for="username">New username:</label><br>
         <input type="text" id="username" name="username", required="true"><br>
         <label for="password">New password:</label><br>
         <input type="password" id="password" name="password", required="true"><br>
-        <button type="submit" >Enviar</button>
+        <button type="submit" >Crear usuario</button>
     </form>
     <p style="color: red;">{{ error }}</p>
+    <p style="font-size: x-small;"> * La contraseña debe contenr al menos 5 caracteres</p>
+    </div>
 {% endblock %}
