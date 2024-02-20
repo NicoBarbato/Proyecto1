@@ -1,26 +1,14 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
 name = "Nicolas Barbato"
+app.secret_key = "brewing_clave"
 
 def get_db_conection():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     return conn, cursor
-
-#posts = [
-#    {"id":1, "autor":"autor 1", "titulo":"Mejores Cervezas","posteo":"Las mejores cervezas se elavoran en..."}, 
-#    {"id":2, "autor":"autor 2", "titulo":"Mejores Variedades","posteo":"La variedad de cervezas mas consumida es.."},
-#    {"id":3, "autor":"autor 3", "titulo":"Mejores Marcas","posteo":"ashfalknfaksfnakjdnasda.."},
-#    {"id":4, "autor":"autor 4", "titulo":"Tipos de copas","posteo":"kjdhfkjasnd,and,mnsd.."},
-#    {"id":5, "autor":"autor 5", "titulo":"Paises mas consumidores","posteo":"sdgsdgasdfsdfsdfgsdg.."},
-#
-#    ]
-#users = [
-#    {"id":1, "username": "nbarbato", "password":"12345"},
-#    {"id":1, "username": "nicob", "password":"12345"}
-#    ]
 
 posts = []
 
@@ -34,7 +22,7 @@ def home():
 
 
 @app.route("/sobre_nosotros")
-def sobren_osotros():
+def sobre_nosotros():
     return render_template("sobre_nosotros.html")  
 
 @app.route("/login", methods=["GET", "POST"])
@@ -49,6 +37,7 @@ def login():
          user_exist = cursor.fetchone()
          conn.close()
          if user_exist and user_exist[2] == password :
+             session["username"] = username
              return render_template("perfil.html")
          else:
              return render_template("login.html", error = "Usuario o contraseña incorrectos")
@@ -57,15 +46,32 @@ def login():
 
 @app.route("/perfil")
 def perfil():
-    return render_template("perfil.html")
+    username = session.get("username")
+    if not username:
+        return render_template("login.html", error = "Debe iniciar sesion para ver este perfil")
+    return render_template("perfil.html", username=username)
+
+@app.route("/logout")
+def logout():
+    username = session.get("username")
+    if not username:
+        return render_template("login.html", error = "Debe iniciar sesion")
+    session.pop("username", None)
+    return redirect("/")
     
 
 @app.route("/create_post", methods=["GET","POST"])
 def create_post():
         if request.method == "GET":
+            username = session.get("username")
+            if not username:
+                return render_template("login.html", error = "Debe iniciar sesion para crear un nuevo post")
             return render_template("create_post.html")
         elif request.method == "POST":
-            autor = request.form["autor"]
+            username = session.get("username")
+            if not username:
+                return render_template("login.html", error = "Debe iniciar sesion para crear un nuevo post")
+            autor = username
             titulo = request.form["titulo"]
             posteo = request.form["posteo"]
             if autor and titulo and posteo:
@@ -112,15 +118,7 @@ def register():
         conn.close()
         return redirect('/perfil')
     
-       #     user_exist = list(filter(lambda user: user['username'] == request.form["username"], users))
-        #    if user_exist:
-         #       return render_template("register.html", error="El username ya existe")
-          #  new_id = users[-1]["id"] + 1
-           # new_user = {"id": new_id, "username": request.form["username"], "password":  request.form["password"]}
-            #users.append(new_user)
-            #return redirect('/perfil')
-
-
+       
 
 
 

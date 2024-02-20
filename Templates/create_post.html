@@ -12,12 +12,11 @@
 {% block main %}
     <h1 class="subtitulo">Crear post</h1>
     <form action="/create_post" method="POST">
-        <label for="autor">Autor:</label><br>
-        <input type="text" id="autor" name="autor"><br>
+        
         <label for="titulo">Titulo:</label><br>
-        <input type="text" id="titulo" name="titulo"><br>
+        <input type="text" id="titulo" name="titulo"class="titulo_post"><br>
         <label for="posteo">Contenido del post:</label><br>
-        <input type="text" id="posteo" name="posteo"><br>
+        <input type="text" id="posteo" name="posteo" class="comentario"><br>
         <input type="submit" value="Enviar">
     </form>
     <p style="color: red;">{{ error }}</p>

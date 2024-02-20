@@ -16,7 +16,11 @@
                 <li><strong><a href="create_post"> Nuevo post</a></strong></li>
                 <li><strong><a href="sobre_nosotros">Sobre nosotros</a></strong></li>
                 <li><strong><a href="/"> Volver al inicio</a></li> 
-                <li><strong><a href="login"> Login</a></strong></li>                  
+                <li><strong><a href="login"> Iniciar sesion</a></strong></li>  
+                {% if session.get("username") %}
+                <li><strong><a href="logout"> Cerrar sesion</a></strong></li>  
+                {% endif %}
+
               
                     
             </ul>
