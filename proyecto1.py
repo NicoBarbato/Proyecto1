@@ -38,7 +38,7 @@ def login():
          conn.close()
          if user_exist and user_exist[2] == password :
              session["username"] = username
-             return render_template("perfil.html")
+             return render_template("create_post.html")
          else:
              return render_template("login.html", error = "Usuario o contraseña incorrectos")
          
@@ -90,7 +90,7 @@ def post():
 @app.route("/post/<id>")
 def busqueda(id):
     conn, cursor = get_db_conection()
-    cursor.execute("SELECT * FROM posts WHERE posts.id == ?", id)
+    cursor.execute("SELECT * FROM posts WHERE posts.id == ?", (id,))
     post = cursor.fetchone()
     return render_template("post.html", post=post)
 
