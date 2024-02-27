@@ -9,22 +9,29 @@
 {% endblock %}
 
 
+
+
 {% block main %}
-        <h1 class="subtitulo">Ultimos Posts</h1>
+
+        <h1 class="subtitulo">ULTIMOS POST AGREGADOS</h1>
+
+
         
         <form action="{{ url_for('home') }}">
             <input type="search" id="search" name="search"><br>
-            <button type="submit">Buscar</button>
+            <button type="submit">Buscar post</button>
         </form>
          {% for posts in posts %}
          <div class="posts">
 
             <h3>{{posts[2]}}</h3>
             <h3 style="font-size: small;"> Autor: {{posts[1]}}</h3>
-            <a href="/post/{{posts[0]}}" style="font-size: small;">Leer mas..</a>
+            <div class="mas">
+            <a href="/post/{{posts[0]}}">Leer mas..</a>
+            </div>
          </div>
          {% endfor %}
-
-    
+         
 {% endblock %}
+
 </html>

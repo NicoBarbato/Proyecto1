@@ -1,61 +1,92 @@
 .titulos {
     color: rgb(255, 255, 255);
     font-size: 15ex;
-    text-align: center;
-    font-family: cursive;
+    text-align:center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     -webkit-text-stroke: 2px;
     -webkit-text-stroke-color: black;
-     }
+    margin: 0%;
+    padding: 0%;
+}
 .barra {
         border-bottom: solid 2px;
-        margin-bottom: 50px;
-        border-top: solid 2px;
-    }
+        margin-bottom: 100x;
+        margin-top: 100px;
+
+}
     
 .barra_inicio {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         list-style: none;
         text-decoration: none;
+        background-color: rgba(190, 191, 183, 0.518);
         
-    }
+}
 
 .foot { 
-    background-color:rgb(243, 255, 135);
+    background-color:rgb(190, 191, 183);
     border-top: solid 2px;
-    font-size: small;
-    
+    font-size: small;  
 }
 .posts {
-    -webkit-box-shadow: inset 0px 0px 76px 4px rgb(248, 248, 248);
-    -moz-box-shadow: inset 0px 0px 76px 4px rgba(248, 248, 248);
-    box-shadow: inset 0px 0px 76px 4px rgba(248, 248, 248);
+    -webkit-box-shadow: inset 0px 0px 76px 4px rgb(190, 191, 183);
+    -moz-box-shadow: inset 0px 0px 76px 4px rgb(190, 191, 183);
+    box-shadow: inset 0px 0px 76px 4px rgb(190, 191, 183);
     margin-bottom: 50px;
-    display: flexbox;
-
+ 
+    
 }
 
 .subtitulo { text-align: center;
+             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+             text-transform: uppercase
+    
 
 }
 
-body{ background-image: url(../css/cerveza.jpg);
-      background-position: center;
-      background-size: cover;
+body{
+    background-color: rgb(232, 237, 206);
 
 }
+
+
 .texto1{
         font-family: cursive;
-
 }
 
 .comentario{
         width: 1000px;
         height: 100px;
-        background-color: rgb(228, 226, 226)
+        background-color: rgb(228, 226, 226);
+        text-align: initial ;
+        
 }
 
 .titulo_post{
         width: 200px;
         background-color: rgb(228, 226, 226)
+}
+
+.fondo{
+    background-image: url(../css/cerveza2.jpg);
+    background-position: center;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.enlace{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 15px 25px;  
+}
+
+.mas{
+    font-size: small;
+    text-align: end;
+    margin-right: 40px;
+    margin-bottom: 40px;
 }

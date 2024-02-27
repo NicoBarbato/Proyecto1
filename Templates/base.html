@@ -5,23 +5,21 @@
     {% endblock %}
 </head>
 <body>
-    <header>
+    <header style="margin: 0%; padding: 0%;">
+        <div class="fondo">
         <div>
             <h1 class="titulos">Blog de Brewing</a></h1>  
         </div>
         <div class="barra">
             <ul class="barra_inicio">
-             
-                
-                <li><strong><a href="create_post"> Nuevo post</a></strong></li>
-                <li><strong><a href="sobre_nosotros">Sobre nosotros</a></strong></li>
-                <li><strong><a href="/"> Volver al inicio</a></li> 
-                <li><strong><a href="login"> Iniciar sesion</a></strong></li>  
-                {% if session.get("username") %}
-                <li><strong><a href="logout"> Cerrar sesion</a></strong></li>  
-                {% endif %}
 
-              
+                <li><strong><a href="create_post" class="enlace"> Nuevo post</a></strong></li>
+                <li><strong><a href="sobre_nosotros"class="enlace">Sobre nosotros</a></strong></li>
+                <li><strong><a href="/"class="enlace"> Volver al inicio</a></li> 
+                <li><strong><a href="login"class="enlace"> Iniciar sesion</a></strong></li>  
+                 {% if session.get("username") %}
+                <li><strong><a href="logout"class="enlace"> Cerrar sesion</a></strong></li>  
+                 {% endif %}            
                     
             </ul>
         </div>
@@ -34,8 +32,11 @@
     <footer>
         {% block footer %}
         <div class="foot">
-        <p> Creador Nicolas Barbato </p>   
-        <p> Contacto: nico_barbato@hotmail.com</p>          
+        <p> Creado por Nicolas Barbato </p>   
+        <p> Para cualquier consulta o pregunta, no dudes en ponerte en contacto con nosotros: 
+            <a href="mailto:nico_barbato@hotmail.com"> Enviar mail.</a>
+        </p>
+                  
 
             
         </div>
