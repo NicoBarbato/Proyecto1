@@ -12,7 +12,6 @@ def get_db_conection():
     cursor = conn.cursor()
     return conn, cursor
 
-posts = []
 
 @app.route('/')
 def home():
@@ -105,10 +104,7 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
 
-        # if not password or not username:
-        #     return render_template("register.html", error="USERNAME y PASSWORD son obligatorios")
-        # if len(password) < 5:
-        #     return render_template("register.html", error="La password debe contener al menos 5 caracteres")
+
         if not valid_form(username=username, password=password):
             return render_template("register.html", error="Los datos estan incompletos por favor reintente")
         
